@@ -15,3 +15,11 @@ print("The result is:", result)
 
 sum = num3 + num4
 print("The sum is:", sum)
+
+# Finding the type of a variable
+print(type(sum)) # <class 'int'>
+
+# Output formated multiple ints
+print(f"{num1} + {num2} = {num1 + num2}") # Output: 11 + 11 = 1111. Because we haven't typecasted it to int
+print(f"{num1} + {num2} = {int(num1 + num2)}") # Output: 11 + 11 = 1111. Because we need to typecast to to individual variables
+print(f"{num1} + {num2} = {int(num1) + int(num2)}") # Output: 11 + 11 = 22

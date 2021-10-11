@@ -9,5 +9,7 @@ else:
 
 words = ['cats', 'dogs', 'tiger', 'lion']
 
-def fib(n):
-    result = []
+num1 = 10
+num2 = 20
+
+print(num1 if num1 > num2 else num2) # Output: 20. Basically a whole if else in one line
