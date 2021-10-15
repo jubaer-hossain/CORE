@@ -23,3 +23,24 @@ print(type(sum)) # <class 'int'>
 print(f"{num1} + {num2} = {num1 + num2}") # Output: 11 + 11 = 1111. Because we haven't typecasted it to int
 print(f"{num1} + {num2} = {int(num1 + num2)}") # Output: 11 + 11 = 1111. Because we need to typecast to to individual variables
 print(f"{num1} + {num2} = {int(num1) + int(num2)}") # Output: 11 + 11 = 22
+
+# Static typing in functions
+# The following function takes string variable called name as input and the return type is string
+def greetings(name: str) -> str:
+    return "Hello" + name
+
+# We can also define new types and strickly limit a functions input and return type of that specific type
+from typing import NewType
+userId = NewType("userId", int) # Defining a new type
+some_id = userId(122)
+
+def getUserName(user_id: userId) -> str:
+    ...
+
+# Typechecks
+user_a = getUserName(userId(122))
+
+# Does not typechecks; an int is not a userId
+user_b = getUserName(12)
+
+# Read more about Typing in python here: https://docs.python.org/3/library/typing.html
