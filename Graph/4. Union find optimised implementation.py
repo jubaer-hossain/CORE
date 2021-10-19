@@ -1,3 +1,19 @@
+'''
+Time complexity:
+UnionFind constractor: O(N)
+Find: O(α(N))
+Union: O(α(N))
+Connected: O(α(N))
+
+Note: NN is the number of vertices in the graph. 
+α refers to the Inverse Ackermann function. 
+In practice, we assume it's a constant. 
+In other words, O(α(N)) is regarded as O(1) on average.
+Learn more about the Inverse Ackermann function here: https://www.youtube.com/watch?v=ahz0HvV_QYU&t=3702s
+
+Memory complexity:
+O(N) to store two arrays of size N
+'''
 class UnionFind:
     def __init__(self, size):
         self.root = [i for i in range(size)]
