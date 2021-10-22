@@ -71,3 +71,12 @@ while a < 100:
     c = a + b
     a = b
     b = c
+
+
+arr = [[]]
+brr = [[0] * 5] * 5
+arr[0].append(9)
+arr[0].append(10)
+arr.append([1, 2, 4, 5])
+print(arr)
+print(brr)

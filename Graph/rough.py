@@ -36,11 +36,3 @@ if __name__ == '__main__':
     g.add_edge(2, 3)
     g.add_edge(3, 4)
     g.print_adjlist()
-
-    arr = [[]]
-    brr = [[0] * 5] * 5
-    arr[0].append(9)
-    arr[0].append(10)
-    arr.append([1, 2, 4, 5])
-    print(arr)
-    print(brr)

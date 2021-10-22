@@ -19,7 +19,6 @@ if __name__ == "__main__":
 '''If we do unit testing on another module then use the following code'''
 
 import unittest
-import calc
 
 class TestCalc(unittest.TestCase):
     def test_add(self):
