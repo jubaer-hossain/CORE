@@ -19,10 +19,10 @@ class graph:
 
     def print_adjlist(self):
         for i in range(self.V):
-            print(f'vertex {i} :', end = " ")
+            print(f"vertex {i} :", end = " ")
             ptr = self.adjlist[i]
             while(ptr):
-                print(f'-> {ptr.data}', end = " ")
+                print(f"-> {ptr.data}", end = " ")
                 ptr = ptr.next
             print()
 
@@ -36,3 +36,11 @@ if __name__ == '__main__':
     g.add_edge(2, 3)
     g.add_edge(3, 4)
     g.print_adjlist()
+
+    arr = [[]]
+    brr = [[0] * 5] * 5
+    arr[0].append(9)
+    arr[0].append(10)
+    arr.append([1, 2, 4, 5])
+    print(arr)
+    print(brr)
