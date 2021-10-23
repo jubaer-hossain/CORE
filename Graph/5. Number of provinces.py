@@ -23,7 +23,7 @@ class UnionFind:
                 root_provinces.append(i)
         return len(root_provinces) - 1
 
-
+from typing import List
 class Solition:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         n = len(isConnected)
