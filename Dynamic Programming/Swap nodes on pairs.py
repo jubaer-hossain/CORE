@@ -26,3 +26,26 @@ class Solution(object):
 
         # Now the head is the second node
         return second_node
+
+
+'''My algoexpert solution'''
+
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def nodeSwap(head):
+	if head is None or head.next is None:
+		return head
+	
+	# Two nodes that we want to swap
+	first_node = head
+	second_node = head.next
+	
+	# Swapping
+	first_node.next = nodeSwap(first_node.next.next) # Or can use second_node.next. Both are same
+	second_node.next = first_node
+	return second_node
