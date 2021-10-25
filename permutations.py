@@ -1,3 +1,5 @@
+# Super intuitive recursive method
+# O(n! * n^2) Time | O(n! * n) Space
 def permutations(array):
     permutations = []
     permutationHelper(array, [], permutations)
@@ -14,7 +16,8 @@ def permutationHelper(array, currentPermutations, permutations):
             
 
 
-
+# Better time complexity with swap method
+# O(n! * n) Time | O(n! * n) Space
 def permutationsWithSwap(array):
     permutations = []
     permutationHelper(0, array, permutations)
