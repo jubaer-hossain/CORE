@@ -13,7 +13,7 @@ class MinHeap:
     def siftDown(self, currentIdx, endIdx, heap):
         childOneIdx = currentIdx * 2 + 1
         while childOneIdx <= endIdx: # We will siftDown until we reach the last leaf of the tree
-            childTwoIdx = currentIdx * 2 + 1 if currentIdx * 2 + 1 <= endIdx else -1
+            childTwoIdx = currentIdx * 2 + 2 if currentIdx * 2 + 2 <= endIdx else -1
             
             # Selecting which child to swap with the current node
             if childTwoIdx != -1 and heap[childTwoIdx] < heap[childOneIdx]:

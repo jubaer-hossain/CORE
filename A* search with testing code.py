@@ -19,12 +19,12 @@ def aStarAlgorithm(startRow, startCol, endRow, endCol, graph):
     startNode.estimatedDistanceToEnd = calculateManhattanDistance(startNode, endNode)
 
 
-    print("Type of startNode:", type(startNode)) 
-    print(startNode)
+    # print("Type of startNode:", type(startNode)) 
+    # print(startNode)
 
-    print("Type of [startNode]:", type([startNode]))
-    print([startNode])
-    print(type(startNode) == type([startNode]))
+    # print("Type of [startNode]:", type([startNode]))
+    # print([startNode])
+    # print(type(startNode) == type([startNode]))
     """
     Mainly here we are passing a list that contains only the start node.
     That's why using [startNode] cause that will convert it to a list. 
@@ -32,12 +32,13 @@ def aStarAlgorithm(startRow, startCol, endRow, endCol, graph):
     But a heap uses an array so that it's efficient to keep track of the top element 
     """
 
-    nodesToVisit = MinHeap([startNode]) 
+    nodesToVisit = MinHeap([startNode])
+    # nodesToVisit
     
-
+    
     while not nodesToVisit.isEmpty():
         currentMinDistanceNode = nodesToVisit.remove()
-
+        print(nodesToVisit.nodePositionsInHeap)
         if currentMinDistanceNode == endNode: # Break if we already reached the end node
             break
     
@@ -72,11 +73,11 @@ def initializeNodes(graph):
             nodes[i].append(Node(i, j, value)) # Creating a Node object with id, row, col, value, G, H and came from
     
     # TESTING: Printing each nodes with row and column index
-    for i, row in enumerate(nodes):
-        print("Row number: ", i)
-        for j, value in enumerate(row):
-            print(i, j, nodes[i][j], nodes[i][j].id, nodes[i][j].value)
-        print()
+    # for i, row in enumerate(nodes):
+    #     print("Row number: ", i)
+    #     for j, value in enumerate(row):
+    #         print(i, j, nodes[i][j], nodes[i][j].id, nodes[i][j].value)
+    #     print()
     return nodes # Returns a 2D array of Node object. Imagine each node is a square block that holds all info about that block
 
 def getNeighboringNodes(node, nodes):
@@ -109,6 +110,7 @@ def calculateManhattanDistance(currentNode, endNode):
 
 def reconstructPath(endNode):
     if not endNode.cameFrom:
+        print("Empty")
         return []
 
     currentNode = endNode
@@ -118,18 +120,29 @@ def reconstructPath(endNode):
         path.append([currentNode.row, currentNode.col])
         currentNode = currentNode.cameFrom
 
-    return reversed(path)
+    return path[::-1]
 
 
 class MinHeap:
     def __init__(self, array):
-        self.nodePositionsInHeap = {node.id: idx for idx, node in enumerate(array)} # DON'T UNDERSTAND: What exactly are we storing in this map?
+        self.nodePositionsInHeap = {node.id: idx for idx, node in enumerate(array)} #  I think now it's clear. So in each iteration it's taking each node element from the array and putting node.id as the and idx(index of that node in the array) as value in the dictionary, right?
         self.heap = self.buildHeap(array)
-        # print(nodePositionsInHeap)
+        
+        print("Printing array over enumerate")
+        for idx, node in enumerate(array):
+            print(idx, node.id)
+
+        # print(array[0].id)
+        # print(type(self.nodePositionsInHeap["0-1"]))
+        # print("Printing the array:")
+        # print(type(enumerate(array)))
+        # print(enumerate(array))
+        # for node, idx in enumerate(array):
+        #     print(idx, node)
 
 
     def isEmpty(self):
-        return len(self.heap)
+        return len(self.heap) == 0
 
     # O(N) Time | O(1) Space
     def buildHeap(self, array):
@@ -142,7 +155,7 @@ class MinHeap:
     def siftDown(self, currentIdx, endIdx, heap):
         childOneIdx = currentIdx * 2 + 1
         while childOneIdx <= endIdx:
-            childTwoIdx = currentIdx * 2 + 1 if currentIdx * 2 + 1 <= endIdx else -1
+            childTwoIdx = currentIdx * 2 + 2 if currentIdx * 2 + 2 <= endIdx else -1
             if (childTwoIdx != -1 and heap[childTwoIdx].estimatedDistanceToEnd < heap[childOneIdx].estimatedDistanceToEnd):
                 idxToSwap = childTwoIdx
             else:
@@ -224,6 +237,32 @@ graph = [
 ]
 
 print(aStarAlgorithm(0, 1, 4, 3, graph))
+
 # initializeNodes(graph)
 # print(initializeNodes(graph))
 # print(type(initializeNodes(graph)[0][0]))
+
+graph2 = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0],
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ]
+
+# print(aStarAlgorithm(0, 0, 0, 19, graph2))
