@@ -61,4 +61,15 @@ edges = [
 
 start = 1
 
-print(dijkstras(start, edges))
+#print(dijkstras(start, edges))
+
+import unittest
+
+
+class TestProgram(unittest.TestCase):
+    def test_case_1(self):
+        start = 0
+        edges = [[[1, 7]], [[2, 6], [3, 20], [4, 3]], [[3, 14]], [[4, 2]], [], []]
+        expected = [0, 7, 13, 27, 10, -1]
+        actual = dijkstras(start, edges)
+        print(self.assertEqual(actual, expected))
