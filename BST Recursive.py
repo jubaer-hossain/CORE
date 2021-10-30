@@ -4,6 +4,8 @@ class BST:
         self.left = None
         self.right = None
 
+    # Average: O(log(n)) time | O(log(n)) space
+    # Worst: O(n) time | O(n) space
     def insert(self, value):
         if value < self.value:
             if self.left is None:
@@ -17,6 +19,8 @@ class BST:
                 self.right.insert(value)
         return self
 
+    # Average: O(log(n)) time | O(1) space
+    # Worst: O(n) time | O(1) space
     def contains(self, value):
         if value < self.value:
             if self.left is None:
@@ -31,6 +35,8 @@ class BST:
         else:
             return True
 
+    # Average: O(log(n)) time | O(log(n)) space
+    # Worst: O(n) time | O(n) space
     def remove(self, value, parent = None):
         if value < self.value:
             if self.left is not None:
