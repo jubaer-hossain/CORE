@@ -13,7 +13,6 @@ def permutationHelper(array, currentPermutations, permutations):
             newArray = array[:i] + array[i + 1:]
             newPermutation = currentPermutations + [array[i]]
             permutationHelper(newArray, newPermutation, permutations)
-            
 
 
 # Better time complexity with swap method
