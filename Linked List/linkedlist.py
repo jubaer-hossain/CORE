@@ -85,7 +85,7 @@ class LinkedList:
 # Initiating with the empty list
 first = LinkedList()
 
-# Creating the head node
+# Creating the head node object instance
 first.head = Node(1)
 
 # Creating three other nodes
