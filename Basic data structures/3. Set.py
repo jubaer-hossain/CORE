@@ -1,6 +1,7 @@
-setOne = {1, 2, 3, 4, 5}
+setOne = set({1, 2, 3, 4, 5}) # It is safe to use set() function while declearing a set. Otherwise it might confuse with Dict
 setTwo = {5, 6, 7, 8, 9, 9, 10} # A set can not contain duplicates. So this will automatically be: {5, 6, 7, 8, 9}
-print(setTwo)
+print(setTwo) # {5, 6, 7, 8, 9}
+print(type(setOne)) # <Class 'set'>
 
 len(setOne) # 5
 
@@ -65,7 +66,25 @@ setSeven ^= setOne # {1, 2, 3, 4, 6}
 
 # Some common & self explanatory methods
 setOne.add(8) # {1, 2, 3, 4, 5, 8}
+print(setOne)
 setOne.remove(5) # {1, 2, 3, 4, 8} -> Raises a KeyError if the element is not present
 setOne.discard(10) # Remove an element if it is present
 setOne.pop() # Remove and Return an arbitrary element from the set. Raises KeyError if the set is empty
-set.clear() # Removes all elements
+setOne.clear() # Removes all elements
+
+
+# List comprehensions
+arr = [i / 2 for i in range(1, 11) if i % 2 == 0] # arr = [1.0, 2.0, 3.0, 4.0, 5.0]
+
+# Set comprehension: No duplicates
+setEight = {i * j for i in range(4) for j in range(4)} # set1 = {0, 1, 2, 3, 4, 6, 9}. No duplicates
+print(setEight)
+
+setNine = set({}) # Must typecast this otherwise it will consider this as s dictionary and raise AttributeError
+setNine = set() # Basically does the same thing
+
+for i in range(4):
+    for j in range(4):
+        setNine.add(i * j)
+
+print(setNine)
