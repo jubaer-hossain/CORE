@@ -9,7 +9,7 @@ f = dict({'one': 1, 'three': 3}, two=2)
 # Map can have different types as key value
 mapOne = {"One": 1, "Two": 4, 5: 8}
 
-listOne = list(mapOne) # Converts map into list: ['One', 'Two', 5]
+listOne = list(mapOne) # Converts map into list of Keys(Not values): ['One', 'Two', 5]
 print(listOne) # ['One', 'Two', 5]
 
 del mapOne['One'] # Deletes element that has key = 'One'. New map = {"Two": 4, 5: 8}
@@ -25,7 +25,7 @@ mapOne['Five'] = mapOne.get('Five', 0) + 1 # Basicalley it means -> mapOne['Five
 
 # keys()
 print(mapOne.keys()) # dict_keys(['Two', 5, 'Five']). dict_keys is a unique type in python
-print(list(mapOne.keys())) # dict_keys(['Two', 5, 'Five']) -> List of keys
+print(list(mapOne.keys())) # ['Two', 5, 'Five'] -> List of keys
 
 # values()
 print(mapOne.values()) # dict_values([4, 8, 1]). dict_values is a unique type in python

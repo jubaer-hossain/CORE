@@ -46,8 +46,9 @@ def deque():
     m = q.popleft() # m = 5
     rightItem = q.pop() # rightItem = 10
     print(m) # 5
+    print(f'Right item is {rightItem}')
 
-    print(f'Queue after popping left element: {q}') # Queue after popping left elementdeque([13, 8, 2, 10])
+    print(f'Queue after popping left element and right element: {q}') # Queue after popping left elementdeque([13, 8, 2])
     print(f'The reversed queue is: {deque(reversed(q))}')
     print(q)
     for idx, value in enumerate(q):
@@ -82,9 +83,9 @@ def fifoQueue():
     qu.put(13)
     qu.put(14)
     qu.put(115)
-    print(qu) # 115 - 14 - 13 - 12
+    print(qu) # <queue.Queue object at 0x104185790>
     print(qu.qsize())
-    print(qu.get()) # 12
+    print(qu.get()) # 12 Removes and return the last item from the queue
     print(qu.empty()) # False
     print(qu.put_nowait(1222)) # 1222 - 115 - 14 - 13
     print(qu.qsize()) # 4
