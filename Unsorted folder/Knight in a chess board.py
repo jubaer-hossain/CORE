@@ -30,34 +30,32 @@ class Solution:
 
         return bfs(x, y)
 
-
-
-# def minKnightMoves(x: int, y: int) -> int:
-#     # Knight moves: total 8 moves
-#     offsets = [(1, 2), (2, 1), (1, -2), (2, -1),
-#                (-1, -2), (-2, -1), (-1, 2), (-2, 1)]
+def minKnightMoves(x: int, y: int) -> int:
+    # Knight moves: total 8 moves
+    offsets = [(1, 2), (2, 1), (1, -2), (2, -1)]
+               (-1, -2), (-2, -1), (-1, 2), (-2, 1)]
     
-#     def bfs(x, y):
-#         queue = deque([(0, 0)])
-#         visited = set()
-#         steps = 0
+    def bfs(x, y):
+        queue = deque([(0, 0)])
+        visited = set()
+        steps = 0
 
-#         while queue:
-#             currentLength = len(queue)
+        while queue:
+            currentLength = len(queue)
 
-#             for i in range(currentLength):
-#                 curr_x, curr_y = queue.popleft()
-#                 if (curr_x, curr_y) == (x, y):
-#                     return steps
+            for i in range(currentLength):
+                curr_x, curr_y = queue.popleft()
+                if (curr_x, curr_y) == (x, y):
+                    return steps
                 
-#                 for offset_x, offset_y in offsets:
-#                     next_x, next_y = curr_x + offset_x, curr_y + offset_y
-#                     if (next_x, next_y) not in visited:
-#                         visited.add((next_x, next_y))
-#                         queue.append((next_x, next_y))
+                for offset_x, offset_y in offsets:
+                    next_x, next_y = curr_x + offset_x, curr_y + offset_y
+                    if (next_x, next_y) not in visited:
+                        visited.add((next_x, next_y))
+                        queue.append((next_x, next_y))
 
-#             steps += 1
-#     return bfs(x, y)
+            steps += 1
+    return bfs(x, y)
 
 def minKnightMoves(x: int, y: int) -> int:
     # Knight moves: total 8 moves

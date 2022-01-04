@@ -54,6 +54,7 @@ def mergeSort(array):
 
     auxiliaryArray = array[:]
     mergeSortHelper(array, 0, len(array) - 1, auxiliaryArray)
+    return array
 
 """ 
 The Main and Auxiliary Array switching visualiztaion:

@@ -131,7 +131,6 @@ class MinHeap:
         print("Printing array over enumerate")
         for idx, node in enumerate(array):
             print(idx, node.id)
-
         # print(array[0].id)
         # print(type(self.nodePositionsInHeap["0-1"]))
         # print("Printing the array:")
@@ -166,7 +165,7 @@ class MinHeap:
                 currentIdx = idxToSwap
                 childOneIdx = currentIdx * 2 + 1
             else:
-                return
+                return 
     
     # O(log(N)) Time | O(1) Space
     def siftUp(self, currnetIdx, heap):

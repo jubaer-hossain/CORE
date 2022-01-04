@@ -42,4 +42,3 @@ def reverseStringIterative(word):
     while left < right: # Because we never need to swap the very middle character
         word[left], word[right] = word[right], word[left]
         left, right = left + 1, right - 1
-        
