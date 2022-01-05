@@ -29,12 +29,22 @@ class BinaryTree:
 
 
 # Solution without using objects
+# O(n) time | O(h) space(average), O(n) space(worst)
 def binaryTreeDiameter(tree):
-    pass
+    maxDiameter, _ = getTreeInfo(tree)
+    return maxDiameter
 
 def getTreeInfo(tree):
     if tree is None:
         return (0, 0)
     
     leftTreeDiameter, leftTreeHeight = getTreeInfo(tree.left)
+    rightTreeDiameter, rightTreeHeight = getTreeInfo(tree.right)
+
+    longestPathThroughRoot = leftTreeHeight + rightTreeHeight
+    maxSubTreeDiameter = max(leftTreeDiameter, rightTreeDiameter)
     
+    currentMaxHeight = 1 + max(leftTreeHeight, rightTreeHeight)
+    currentMaxDiameter = max(longestPathThroughRoot, maxSubTreeDiameter)
+
+    return (currentMaxDiameter, currentMaxHeight)
