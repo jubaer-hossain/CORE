@@ -5,7 +5,15 @@ def maxPathSum(tree):
 
 def findMaxSum(tree):
     if tree is None:
-        return (0, float("-inf"))
+        return (float(-"inf"), float("-inf"))
+    """
+    Because let's say we have a tree that has only one node as -2. 
+    In that case if it returns "0" which is a bigger number than -2 it will return the maxPathSum as 0. 
+    But that is an incorrect value. 
+    return (float("-inf"), float("-inf")) will work too 
+    cause if the tree has any brunch then returning 0 will be neutralised in the next Recursive call
+    where the tree has actually a value
+    """
 
     leftMaxSumAsBranch, leftMaxPathSum = findMaxSum(tree.left)
     rightMaxSumAsBranch, rightMaxPathSum = findMaxSum(tree.right)
