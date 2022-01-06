@@ -1,27 +1,24 @@
-# O(n) time | O(d) space
-def maxPathSum(tree):
-    _, maxPath = maxPathSumFinder(tree)
-    return maxPath
+class BinaryTree:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
 
-def maxPathSumFinder(tree):
+def binaryTreeDiameter(tree):
+    maxDiameter, _ = getTreeInfo(tree)
+    return maxDiameter
+
+def getTreeInfo(tree):
     if tree is None:
-        return (float(-"inf"), float("-inf"))
-    """
-    Because let's say we have a tree that has only one node as -2. 
-    In that case if it returns "0" which is a bigger number than -2 it will return the maxPathSum as 0. 
-    But that is an incorrect value. 
-    return (float("-inf"), float("-inf")) will work too 
-    cause if the tree has any brunch then returning 0 will be neutralised in the next Recursive call
-    where the tree has actually a value
-    """
+        return (0, 0) # currentDiameter, currentHeight
     
-    leftBrunchSum, leftPathSum = maxPathSumFinder(tree.left)
-    rightBrunchSum, rightPathSum = maxPathSumFinder(tree.right)
-    maxChildBrunchSum = max(leftBrunchSum, rightBrunchSum)
+    leftTreeDiameter, leftTreeHeight = getTreeInfo(tree.left)
+    rightTreeDiameter, rightTreeHeight = getTreeInfo(tree.right)
 
-    value = tree.value
-    maxBrunchSumWithRoot = max(maxChildBrunchSum + value, value)
-    maxPathSumWithRoot = max(leftBrunchSum + value + rightBrunchSum, maxBrunchSumWithRoot)
-    maxPathSum = max(leftPathSum, rightPathSum, maxPathSumWithRoot)
+    longestPathThroughRoot = leftTreeHeight + rightTreeHeight
+    maxSubTreeDiameter = max(leftTreeDiameter, rightTreeDiameter)
+    
+    currentMaxDiameter = max(longestPathThroughRoot, maxSubTreeDiameter)
+    currentMaxHeight = 1 + max(leftTreeHeight, rightTreeHeight)
 
-    return (maxBrunchSumWithRoot, maxPathSum)
+    return (currentMaxDiameter, currentMaxHeight)

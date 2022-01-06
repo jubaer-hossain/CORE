@@ -36,7 +36,7 @@ def binaryTreeDiameter(tree):
 
 def getTreeInfo(tree):
     if tree is None:
-        return (0, 0)
+        return (0, 0) # currentDiameter, currentHeight
     
     leftTreeDiameter, leftTreeHeight = getTreeInfo(tree.left)
     rightTreeDiameter, rightTreeHeight = getTreeInfo(tree.right)
@@ -44,7 +44,7 @@ def getTreeInfo(tree):
     longestPathThroughRoot = leftTreeHeight + rightTreeHeight
     maxSubTreeDiameter = max(leftTreeDiameter, rightTreeDiameter)
     
-    currentMaxHeight = 1 + max(leftTreeHeight, rightTreeHeight)
     currentMaxDiameter = max(longestPathThroughRoot, maxSubTreeDiameter)
+    currentMaxHeight = 1 + max(leftTreeHeight, rightTreeHeight)
 
     return (currentMaxDiameter, currentMaxHeight)
