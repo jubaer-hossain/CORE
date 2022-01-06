@@ -1,21 +1,19 @@
-# O(n) time | O(h) space -> Average case
-def rightSiblingTree(root):
-    mutate(root, None, None)
-    return root
+# O(n) time | O(d) space -> Average case
+def maxPathSum(tree):
+    _, maxSum = maxPathSumFinder(tree)
+    return maxSum
 
-def mutate(node, parent, isLeftChild):
-    if node is None:
-        return
-    
-    left, right = node.left, node.right
-    mutate(left, node, True)
-    if parent is None:
-        node.right = None
-    elif isLeftChild:
-        node.right = parent.right
-    else:
-        if parent.right is None:
-            node.right = None
-        else:
-            node.right = parent.right.left
-    mutate(right, node, False)
+def maxPathSumFinder(tree):
+    if tree is None:
+        return (0, float("-inf"))
+
+    leftBranchSum, leftMaxSum = maxPathSumFinder(tree.left)
+    rightBranchSum, rightMaxSum = maxPathSumFinder(tree.right)
+    maxChildBranchSum = max(leftBranchSum, rightBranchSum)
+
+    value = tree.value
+    maxBranchSumWithRoot = max(maxChildBranchSum + value, value)
+    maxSumWithRoot = max(leftBranchSum + value + rightBranchSum, maxBranchSumWithRoot)
+    maxSum = max(leftMaxSum, rightMaxSum, maxSumWithRoot)
+
+    return (maxBranchSumWithRoot, maxSum)
