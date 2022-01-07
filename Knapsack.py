@@ -23,7 +23,7 @@ def getKnapsackItems(knapsackValues, items):
         if knapsackValues[i][c] == knapsackValues[i - 1][c]:
             i -= 1
         else:
-            sequence.append(items[i - 1]) # We are only adding indices not the actual items info
+            sequence.append(i - 1) # We are only adding indices not the actual items info
             c -= items[i - 1][1]
             i -= 1
         if c == 0:
