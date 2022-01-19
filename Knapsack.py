@@ -1,12 +1,17 @@
 # O(nc) time | O(nc) space, where n = number of items and c = knapsack capacity
 def knapsackProblem(items, capacity):
-    knapsackValues = [[0 for x in range(0, capacity + 1)] for y in range(0, len(items) + 1)] # Total items + 1 rows and Total Capacity + 1 columns
+    knapsackValues = [[0 for column in range(0, capacity + 1)] for row in range(0, len(items) + 1)] # Total items + 1 rows and Total Capacity + 1 columns
+    """
+    First imagine that you have only one row. You are filling that row with Zeros. Let's say you need 10 Zeros. 
+    Here 10 is actually the number of columns in the first row.
 
-    for i in range(1, len(items) + 1):
-        currentWeight = items[i - 1][1]
+    Then we need to multiply 10 columns with 5 rows lets say
+    """
+    for i in range(1, len(items) + 1): # Because first row is our base case where we don't take any items. Must start from 1 otherwise we will get index out of range error
         currentValue = items[i - 1][0]
+        currentWeight = items[i - 1][1]
 
-        for c in range(0, capacity + 1):
+        for c in range(0, capacity + 1): # If we start from 0 or 1 it doesn't make any difference
             if currentWeight > c:
                 knapsackValues[i][c] = knapsackValues[i - 1][c]
             else:

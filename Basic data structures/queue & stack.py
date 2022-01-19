@@ -48,7 +48,7 @@ def deque():
     print(m) # 5
     print(f'Right item is {rightItem}')
 
-    print(f'Queue after popping left element and right element: {q}') # Queue after popping left elementdeque([13, 8, 2])
+    print(f'Queue after popping left element and right element: {q}') # Queue after popping left element deque([13, 8, 2])
     print(f'The reversed queue is: {deque(reversed(q))}')
     print(q)
     for idx, value in enumerate(q):

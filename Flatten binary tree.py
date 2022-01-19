@@ -1,6 +1,6 @@
 # O(n) time | O(n) space
 def flattenBinaryTree(root):
-    inOrderNodes = getNodesInOrder(root, [])
+    inOrderNodes = getNodesInOrder(root, []) # Alws pass an empty array when the function needs it.
 
     for i in range(0, len(inOrderNodes) - 1):
         leftNode = inOrderNodes[i]
@@ -29,14 +29,14 @@ def flattenTree(node):
     else:
         leftSubtreeLeftMost, leftSubtreeRightMost = flattenTree(node.left)
         connectNodes(leftSubtreeRightMost, node)
-        leftMost = leftSubtreeLeftMost
+        leftMost = leftSubtreeLeftMost # We need this for the parent trees
 
     if node.right is None:
         rightMost = node
     else:
         rightSubtreeLeftMost, rightSubtreeRightMost = flattenTree(node.right)
         connectNodes(node, rightSubtreeLeftMost)
-        rightMost = rightSubtreeRightMost
+        rightMost = rightSubtreeRightMost # We need it for the parent trees
     
     return (leftMost, rightMost)
 

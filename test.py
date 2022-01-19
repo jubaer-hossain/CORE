@@ -1,16 +1,25 @@
-def nodeDepths(root):
-    sumOfDepths = 0
-    stack = [{"node": root, "depth": 0}]
+import collections
 
-    while len(stack):
-        nodeInfo = stack.pop()
-        node, depth = nodeInfo["node"], nodeInfo["depth"]
 
+class Solution(object):
+    def findLeaves(self, root):
+        depthToValues = collections.defaultdict(list)
+
+        self.populateDepthToValuesUsingDFS(root, depthToValues)
+
+        leaves = []
+        for i in range(1, len(depthToValues) + 1):
+            leaves.append(depthToValues[i])
+        return leaves
+
+    def populateDepthToValuesUsingDFS(self, node, depthToValues):
         if node is None:
-            continue
+            return 0
         
-        sumOfDepths += depth
-        stack.append({"node": node.left, "depth": depth + 1})
-        stack.append({"node": node.right, "depth": depth + 1})
+        leftSubtreeDepth = self.populateDepthToValuesUsingDFS(node.left, depthToValues)
+        rightSubtreeDepth = self.populateDepthToValuesUsingDFS(node.right, depthToValues)
 
-    return sumOfDepths
+        currentTreeDepth = max(leftSubtreeDepth, rightSubtreeDepth) + 1
+        depthToValues[currentTreeDepth].append(node.val)
+
+        return currentTreeDepth
