@@ -1,12 +1,6 @@
 # O(n) time | O(n) space
 class Solution(object):
     def rangeSumBST(self, root, low, high):
-        """
-        :type root: TreeNode
-        :type low: int
-        :type high: int
-        :rtype: int
-        """
         inOrderTraversal = []
         inOrderTraversal = self.getInOrderTraversal(root, inOrderTraversal)
         result = 0
@@ -23,37 +17,10 @@ class Solution(object):
             self.getInOrderTraversal(node.right, array)
         return array
 
+
+# O(n) time | O(h) space
 class Solution(object):
     def rangeSumBST(self, root, low, high):
-        """
-        :type root: TreeNode
-        :type low: int
-        :type high: int
-        :rtype: int
-        """
-        return self.dfs(root, low, high)
-
-    def dfs(self, node, low, high):
-        if node is None:
-            return 0
-        
-        leftSubtreeSum = self.dfs(node.left, low, high)
-        rightSubtreeSum = self.dfs(node.right, low, high)
-
-        currentRunningSum = leftSubtreeSum + rightSubtreeSum
-        if node.val >= low and node.val <= high:
-            currentRunningSum += node.val
-        return currentRunningSum
-
-
-class Solution(object):
-    def rangeSumBST(self, root, low, high):
-        """
-        :type root: TreeNode
-        :type low: int
-        :type high: int
-        :rtype: int
-        """
         if root is None:
             return 0
         

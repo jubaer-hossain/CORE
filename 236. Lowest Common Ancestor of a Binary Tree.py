@@ -30,7 +30,7 @@ class Solution:
             if mid + left + right >= 2:
                 self.ans = current_node
 
-            # Return True if either of the three bool values is True.
+            # Return True if either of the three bool values is True.p-=
             return mid or left or right
 
         # Traverse the tree
