@@ -56,10 +56,10 @@ def compareLeafTraversal(tree1, tree2):
     return list1CurrentNode is None and list2CurrentNode is None
 
 def connectLeafNodes(currentNode, head = None, previousNode = None):
-    if currentNode is None:
+    if currentNode is None: # None node base case: return
         return head, previousNode
     
-    if isLeafNode(currentNode):
+    if isLeafNode(currentNode): # Leaf node base case: calculate linked list
         if previousNode is None:
             head = currentNode
         else:
