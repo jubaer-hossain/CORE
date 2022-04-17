@@ -2,7 +2,7 @@
 arr = [i / 2 for i in range(1, 11) if i % 2 == 0] # arr = [1.0, 2.0, 3.0, 4.0, 5.0]
 
 # Nested loops in list comprehensions
-brr = [i * j for i in range(0, 3) for j in range(5)] # brr = [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0, 2, 4, 6, 8]
+brr = [i * j for i in range(0, 3) for j in range(5)] # brr = [0, 0, 0, 0, 0,   0, 1, 2, 3, 4,   0, 2, 4, 6, 8]
 print(brr)
 
 # For touples. You need to convert the list into touple
