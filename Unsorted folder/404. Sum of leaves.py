@@ -9,7 +9,7 @@ class Solution(object):
         if node is None:
             return 0
         
-        if node.left is None and node.right is None:
+        if node.left is None and node.right is None: # Is leaf node
             if isLeftChild:
                 return node.val
             else:
@@ -19,3 +19,6 @@ class Solution(object):
         rightSubtreeSum = self.getLeavesSum(node.right, False, runningSum)
 
         return leftSubtreeSum + rightSubtreeSum
+
+
+    
