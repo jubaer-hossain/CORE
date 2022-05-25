@@ -45,6 +45,16 @@ def sumAllNodeDepths(node, nodeDepths):
 
 
 
+
+
+
+
+
+
+
+
+
+
 class TreeInfo:
     def __init__(self, nodeCountsInSubtree, sumOfDepths, sumOfAllDepths):
         self.nodeCountsInSubtree = nodeCountsInSubtree

@@ -1,5 +1,5 @@
 def findNodesDistanceK(tree, target, k):
-    nodesToParents = {}
+    nodesToParents = {} # Node "values" to parentNode "object"
     populateNodesToParents(tree, nodesToParents)
 
     targetNode = getNodeFromValue(tree, nodesToParents, target)
@@ -8,7 +8,7 @@ def findNodesDistanceK(tree, target, k):
 
 def breathFirstSearchForNodesDistanceK(targetNode, nodesToParents, k):
     queue = [(targetNode, 0)] # FIFO 
-    seen = {targetNode.value}
+    seen = {targetNode.value} # Set
 
     while len(queue) > 0:
         currentNode, distanceFromTarget = queue.pop(0) # FIFO order that's why popping the first element
@@ -34,14 +34,14 @@ def getNodeFromValue(tree, nodesToParents, value):
     if tree.value == value: # If the target node is at root
         return tree
     
-    nodeParent = nodesToParents[value] # Getting the node's parent
-    if nodeParent.left and nodeParent.left.value == value: # Checking if the targetNode is parent's left or right child
-        return nodeParent.left
-    return nodeParent.right
+    parentNode = nodesToParents[value] # Getting the node's parent
+    if parentNode.left and parentNode.left.value == value: # Checking if the targetNode is parent's left or right child
+        return parentNode.left
+    return parentNode.right
 
 # Mapping every Value to it's Parent
-def populateNodesToParents(node, nodesToParents, parent = None):
+def populateNodesToParents(node, nodesToParents, parentNode = None):
     if node is not None:
-        nodesToParents[node.value] = parent
+        nodesToParents[node.value] = parentNode
         populateNodesToParents(node.left, nodesToParents, node)
         populateNodesToParents(node.right, nodesToParents, node)
