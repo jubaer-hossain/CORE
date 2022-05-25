@@ -1,75 +1,43 @@
-# O(n) time | O(n) space
-def flattenBinaryTree(root):
-    # 1. Traverse the tree inOrder and return the final values in an array
-    inOrderNodes = getNodesInOrder(root, []) # Alws pass an empty array when the function needs it.
+class BinaryTree:
+    def __init__ (self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+        self.parent = None
 
-    # 2. Run a for loop EXCLUDING the LAST NODE because we will be connecting the lastNode when we are at "array(len) - 1" node
-    for i in range(0, len(inOrderNodes) - 1):
-        leftNode = inOrderNodes[i]
-        rightNode = inOrderNodes[i + 1]
-        leftNode.right = rightNode
-        rightNode.left = leftNode
+# O(n) time | O(1) space
+def iterativeInOrderTraversal(node, callback):
+    previousNode = None
+    currentNode = node
 
-    # 3. Return the first node
-    return inOrderNodes[0]
+    # 0. We run the loop until we reach the rightMost leaf
+    while currentNode is not None:
+        # 1. Traveling downwards 
+        if previousNode is None or previousNode == currentNode.parent: # Traversing left down or we are the right leaf
 
-# Standard inOrder traversal and storing the nodes in an array
-def getNodesInOrder(root, array):
-    if root is not None:
-        getNodesInOrder(root.left, array)
-        array.append(root)
-        getNodesInOrder(root.right, array)
-    return array # We are RETURNING the array MULTIPLE times when we hit the None nodes. But the last/rightMost node's return will overwrite the entire array
+            # 1.1. If we have left child then we need to explore them first. InOrder means we explore "left - current - right"
+            if currentNode.left is not None:
+                nextNode = currentNode.left 
 
+            # 1.2. No left nodes. So we explore the currentNode and try to set the next node as currentNode.right. But if we are at a right leaf node then there is no further to explore so we assign the nextNode as our parentNode
+            else:
+                callback(currentNode) # All right nodes/childrens are explored here
+                nextNode = currentNode.right if currentNode.right is not None else currentNode.parent
 
+        # 2. Traveling UPWARDS from LEFT
+        elif previousNode == currentNode.left: # Previous node is our currentNode's left child. That means we explored all the left subtree
+            callback(currentNode)
+            nextNode = currentNode.right if currentNode.right is not None else currentNode.parent
 
-# Optimised approach convert a binary tree into a Linked List in-place
-# O(n) time | O(d) space
-def flattenBinaryTree(root):
-    leftMost, rightMost = flattenTree(root)
-    return leftMost
+        # 3. Traveling UPWARDS from RIGHT
+        elif previousNode == currentNode.right: # We already explored the right leaf and now need to explore upword
+            nextNode = currentNode.parent
 
-def flattenTree(node):
-    # 1. Process leftSubtree
-
-    # 1.1. If we're in a leaf node then currentNode is the leftMost
-    if node.left is None:
-        leftMost = node
-
-    # 1.2. Otherwise get leftSubtree leftMost and RightMost nodes
-    else:
-        leftSubtreeLeftMost, leftSubtreeRightMost = flattenTree(node.left)
-
-        # 1.3. Connect leftSubtree RightMost with currentNode
-        connectNodes(leftSubtreeRightMost, node)
-
-        # 1.4. We need this for parentNodes
-        leftMost = leftSubtreeLeftMost
-
-
-    # 2. Process rightSubtree
-
-    # 2.1 If we're in a leaf node then currentNode is the rightMost
-    if node.right is None:
-        rightMost = node
-
-    # 2.2. Otherwise get rightSubtree leftMost and RightMost nodes
-    else:
-        rightSubtreeLeftMost, rightSubtreeRightMost = flattenTree(node.right)
-
-        # 2.3. Connect rightSubtree LeftMost with currentNode
-        connectNodes(node, rightSubtreeLeftMost)
-
-        # 1.4. We need this for parentNodes
-        rightMost = rightSubtreeRightMost
-
-    # 3. Finally return leftMost and rightMost nodes. Basically leftMost means it is the very leftMost Leaf Node of the currentSubtree.
-    return (leftMost, rightMost)
-
-def connectNodes(left, right):
-    left.right = right
-    right.left = left
+        # 4. Finally we update/move forward the previous and currentNode
+        previousNode = currentNode
+        currentNode = nextNode
 
 
 
-    
+
+        
