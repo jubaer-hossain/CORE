@@ -69,3 +69,7 @@ def flattenTree(node):
 def connectNodes(left, right):
     left.right = right
     right.left = left
+
+
+
+    
