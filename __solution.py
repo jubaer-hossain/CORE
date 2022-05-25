@@ -10,6 +10,7 @@ def rightSiblingTree(root):
     mutate(root, None, False)
     return root
 
+# O(n) time | O(d) space
 def mutate(node, parentNode, isLeftChild):
     if node is None:
         return
