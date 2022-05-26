@@ -163,6 +163,7 @@ class BST:
 
                 # Once we remove the node, we break out of the while loop
                 break
+
         return self
                     
 
