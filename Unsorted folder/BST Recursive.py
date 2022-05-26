@@ -74,13 +74,14 @@ class BST:
 
 
 
-
+# Iterative approach
 class BST:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
 
+    # O(n)/(log(n)) time | O(1) space 
     def insert(self, value):
         currentNode = self
 
@@ -104,6 +105,7 @@ class BST:
                     currentNode = currentNode.right
         return self
 
+    # O(n)/(log(n)) time | O(1) space 
     def contains(self, value):
         currentNode = self
 
@@ -117,6 +119,7 @@ class BST:
 
         return False
 
+    # O(n)/(log(n)) time | O(1) space 
     def remove(self, value, parentNode = None):
         currentNode = self
 
