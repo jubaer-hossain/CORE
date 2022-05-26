@@ -158,6 +158,7 @@ class BST:
                 # Case-3: Removing a node that has LESS THAN TWO child and a LEFT child of a node
                 elif parentNode.left == currentNode:
                     parentNode.left = currentNode.left if currentNode.left is not None else currentNode.right
+                # Removing a node that has LESS THAN TWO child and a RIGHT child of a node
                 elif parentNode.right == currentNode:
                     parentNode.right = currentNode.left if currentNode.left is not None else currentNode.right
 
