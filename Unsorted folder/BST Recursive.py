@@ -176,3 +176,5 @@ class BST:
             currentNode = currentNode.left
 
         return currentNode.value 
+
+
