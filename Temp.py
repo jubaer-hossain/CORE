@@ -15,7 +15,8 @@ class Solution(object):
                     right -= 1
                 else:
                     result.append([a, nums[left], nums[right]])
-                    while nums[left] == nums[left + 1] and left < right:
-                        left += 1
                     left += 1
+
+                    while nums[left] == nums[left - 1] and left < right:
+                        left += 1
         return result
